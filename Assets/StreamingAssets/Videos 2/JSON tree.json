@@ -1,0 +1,256 @@
+{
+  "startupVideo": "video de depart.mp4",
+  "startNode": "menu",
+  "idleVideos": [
+    {
+      "key": 1,
+      "video": "idle1.mp4"
+    },
+    {
+      "key": 2,
+      "video": "idle2.mp4"
+    },
+    {
+      "key": 3,
+      "video": "idle3.mp4"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "menu",
+      "video": "video de depart.mp4",
+      "phrase": "Veillez vous mettre en place",
+      "choices": [
+        {
+          "key": 1,
+          "label": "",
+          "target": "vid_23"
+        },
+        {
+          "key": 2,
+          "label": "",
+          "target": "vid_24"
+        },
+        {
+          "key": 3,
+          "label": "",
+          "target": "vid_25"
+        }
+      ]
+    },
+    {
+      "id": "vid_23",
+      "video": "VID_23.mp4",
+      "phrase": "",
+      "choices": [
+        {
+          "key": 1,
+          "label": "",
+          "target": "vid_26"
+        },
+        {
+          "key": 2,
+          "label": "",
+          "target": "vid_28"
+        },
+        {
+          "key": 3,
+          "label": "",
+          "target": "vid_30"
+        }
+      ]
+    },
+    {
+      "id": "vid_24",
+      "video": "VID_24.mp4",
+      "phrase": "",
+      "choices": [
+        {
+          "key": 1,
+          "label": "",
+          "target": "vid_26"
+        },
+        {
+          "key": 2,
+          "label": "",
+          "target": "vid_28"
+        },
+        {
+          "key": 3,
+          "label": "",
+          "target": "vid_30"
+        }
+      ]
+    },
+    {
+      "id": "vid_25",
+      "video": "VID_25.mp4",
+      "phrase": "",
+      "choices": [
+        {
+          "key": 1,
+          "label": "",
+          "target": "vid_26"
+        },
+        {
+          "key": 2,
+          "label": "",
+          "target": "vid_28"
+        },
+        {
+          "key": 3,
+          "label": "",
+          "target": "vid_30"
+        }
+      ]
+    },
+    {
+      "id": "vid_26",
+      "video": "VID_26.mp4",
+      "phrase": "",
+      "choices": [
+        {
+          "key": 1,
+          "label": "",
+          "target": "vid_27"
+        },
+        {
+          "key": 2,
+          "label": "",
+          "target": "vid_29"
+        },
+        {
+          "key": 3,
+          "label": "",
+          "target": "vid_31"
+        }
+      ]
+    },
+    {
+      "id": "vid_28",
+      "video": "VID_28.mp4",
+      "phrase": "",
+      "choices": [
+        {
+          "key": 1,
+          "label": "",
+          "target": "vid_27"
+        },
+        {
+          "key": 2,
+          "label": "",
+          "target": "vid_29"
+        },
+        {
+          "key": 3,
+          "label": "",
+          "target": "vid_31"
+        }
+      ]
+    },
+    {
+      "id": "vid_30",
+      "video": "VID_30.mp4",
+      "phrase": "",
+      "choices": [
+        {
+          "key": 1,
+          "label": "",
+          "target": "vid_27"
+        },
+        {
+          "key": 2,
+          "label": "",
+          "target": "vid_29"
+        },
+        {
+          "key": 3,
+          "label": "",
+          "target": "vid_31"
+        }
+      ]
+    },
+    {
+      "id": "vid_27",
+      "video": "VID_27.mp4",
+      "phrase": "",
+      "choices": []
+    },
+    {
+      "id": "vid_29",
+      "video": "VID_29.mp4",
+      "phrase": "",
+      "choices": []
+    },
+    {
+      "id": "vid_31",
+      "video": "VID_31.mp4",
+      "phrase": "",
+      "choices": []
+    },
+    {
+      "id": "foret_intro",
+      "video": "1.mp4",
+      "phrase": "Vous entrez dans la forêt.",
+      "choices": [
+        {
+          "key": 1,
+          "label": "Thème urbain",
+          "target": "urbain_intro"
+        },
+        {
+          "key": 2,
+          "label": "Aller vers fin",
+          "target": "fin"
+        }
+      ]
+    },
+    {
+      "id": "urbain_intro",
+      "video": "video 360 deg.mov",
+      "phrase": "La ville apparaît autour de vous.",
+      "choices": [
+        {
+          "key": 1,
+          "label": "Aller vers fin",
+          "target": "fin"
+        }
+      ]
+    },
+    {
+      "id": "espace_intro",
+      "video": "2.mp4",
+      "phrase": "L'espace s'ouvre devant vous.",
+      "choices": [
+        {
+          "key": 1,
+          "label": "Aller vers fin",
+          "target": "fin"
+        },
+        {
+          "key": 2,
+          "label": "rostom",
+          "target": "rostom"
+        }
+      ]
+    },
+    {
+      "id": "rostom",
+      "video": "VID_20260414_114547_00_024.mp4",
+      "phrase": "Séquence spéciale en cours.",
+      "choices": [
+        {
+          "key": 2,
+          "label": "Aller vers fin",
+          "target": "fin"
+        }
+      ]
+    },
+    {
+      "id": "fin",
+      "video": "AAA video 360 depart.mp4",
+      "phrase": "Fin du parcours.",
+      "choices": []
+    }
+  ]
+}
