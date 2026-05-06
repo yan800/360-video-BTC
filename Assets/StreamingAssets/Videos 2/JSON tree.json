@@ -23,17 +23,17 @@
       "choices": [
         {
           "key": 1,
-          "label": "",
+          "label": "Mehdi, content de te voir. Tu as pris le temps de préparer des notes, j'apprécie vraiment ça.",
           "target": "vid_23"
         },
         {
           "key": 2,
-          "label": "",
+          "label": "Bonjour Mehdi. On va commencer, j'ai pas beaucoup de temps.",
           "target": "vid_24"
         },
         {
           "key": 3,
-          "label": "",
+          "label": "Bonjour Mehdi. Assieds-toi, on va commencer.",
           "target": "vid_25"
         }
       ]
@@ -41,7 +41,7 @@
     {
       "id": "vid_23",
       "video": "VID_23.mp4",
-      "phrase": "",
+      "phrase": "Mehdi, content de te voir. Tu as pris le temps de préparer des notes, j'apprécie vraiment ça.",
       "choices": [
         {
           "key": 1,
@@ -63,7 +63,7 @@
     {
       "id": "vid_24",
       "video": "VID_24.mp4",
-      "phrase": "",
+      "phrase": "Bonjour Mehdi. On va commencer, j'ai pas beaucoup de temps.",
       "choices": [
         {
           "key": 1,
@@ -85,7 +85,7 @@
     {
       "id": "vid_25",
       "video": "VID_25.mp4",
-      "phrase": "",
+      "phrase": "Bonjour Mehdi. Assieds-toi, on va commencer.",
       "choices": [
         {
           "key": 1,

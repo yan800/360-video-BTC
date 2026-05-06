@@ -39,7 +39,7 @@ public class VRResetViewOnAlt : MonoBehaviour
         }
     }
 
-    private void ResetView()
+    public void ResetView()
     {
         if (centerEye == null)
         {

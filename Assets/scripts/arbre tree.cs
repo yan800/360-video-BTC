@@ -183,7 +183,8 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         if (keyboard.spaceKey.wasPressedThisFrame)
         {
-            StartCoroutine(ReturnToMenuRoutine());
+            ReturnToMenu();
+            //StartCoroutine(ReturnToMenuRoutine());
             return;
         }
 
@@ -356,7 +357,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
             helmetPhraseText.text = defaultHelmetPhrase;
     }
 
-    private void ToggleHelmetPhraseUI()
+    public void ToggleHelmetPhraseUI()
     {
         showHelmetPhrase = !showHelmetPhrase;
 
@@ -532,7 +533,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         return nodeById[treeData.startNode];
     }
 
-    private void HandleChoice(int key)
+    public void HandleChoice(int key)
     {
         if (currentNode == null)
             return;
@@ -715,6 +716,11 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         isTransitioning = false;
     }
+
+    public void ReturnToMenu()
+    {
+        StartCoroutine(ReturnToMenuRoutine());
+    }   
 
     private IEnumerator ReturnToMenuRoutine()
     {
