@@ -60,7 +60,13 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
     [Header("PC Operator UI - TextMeshPro")]
     [SerializeField] private TMP_Text pathText;
     [SerializeField] private TMP_Text currentVideoText;
+    [SerializeField] private TMP_Text stepText;
     [SerializeField] private TMP_Text choicesText;
+
+    [Header("PC Operator UI - Choix séparés")]
+    [SerializeField] private TMP_Text choice1Text;
+    [SerializeField] private TMP_Text choice2Text;
+    [SerializeField] private TMP_Text choice3Text;
 
     [Header("Options")]
     [SerializeField] private bool logBranching = true;
@@ -122,7 +128,16 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
     {
         public string id;
         public string video;
+
+        // Texte affiché sur l'interface PC opérateur.
+        public string label;
+
+        // Étape à laquelle appartient la vidéo.
+        public string step;
+
+        // Texte affiché dans le casque VR.
         public string phrase;
+
         public List<VideoChoiceData> choices;
     }
 
@@ -130,7 +145,9 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
     private class VideoChoiceData
     {
         public int key;
-        public string label;
+
+        // Le choix ne contient plus de label.
+        // Le texte affiché est récupéré depuis le node ciblé.
         public string target;
     }
 
@@ -184,7 +201,6 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         if (keyboard.spaceKey.wasPressedThisFrame)
         {
             ReturnToMenu();
-            //StartCoroutine(ReturnToMenuRoutine());
             return;
         }
 
@@ -453,11 +469,12 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
             foreach (VideoNodeData node in treeData.nodes)
             {
-                Debug.Log($"Node : {node.id} | video={node.video} | phrase={node.phrase} | choices={node.choices.Count}");
+                Debug.Log($"Node : {node.id} | video={node.video} | step={node.step} | label={node.label} | phrase={node.phrase} | choices={node.choices.Count}");
 
                 foreach (VideoChoiceData choice in node.choices)
                 {
-                    Debug.Log($"   Touche {choice.key} -> {choice.label} -> {choice.target}");
+                    string targetLabel = GetLabelForTarget(choice.target);
+                    Debug.Log($"   Touche {choice.key} -> {targetLabel} -> {choice.target}");
                 }
             }
         }
@@ -632,7 +649,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         RefreshHelmetPhrase();
 
         if (logBranching)
-            Debug.Log($"Lecture node : {currentNode.id} | vidéo : {currentVideoDisplayName} | lancée par touche {launchKey}");
+            Debug.Log($"Lecture node : {currentNode.id} | step : {currentNode.step} | label PC : {currentNode.label} | phrase casque : {currentNode.phrase} | vidéo : {currentVideoDisplayName} | lancée par touche {launchKey}");
 
         RefreshOperatorUI();
 
@@ -720,7 +737,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
     public void ReturnToMenu()
     {
         StartCoroutine(ReturnToMenuRoutine());
-    }   
+    }
 
     private IEnumerator ReturnToMenuRoutine()
     {
@@ -814,10 +831,45 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         if (currentVideoText != null)
             currentVideoText.text = BuildCurrentVideoText();
 
+        if (stepText != null)
+            stepText.text = BuildStepText();
+
         if (choicesText != null)
             choicesText.text = BuildChoicesText();
+
+        RefreshChoiceTexts();
     }
 
+    private void RefreshChoiceTexts()
+    {
+        SetChoiceText(choice1Text, 1);
+        SetChoiceText(choice2Text, 2);
+        SetChoiceText(choice3Text, 3);
+    }
+
+    private void SetChoiceText(TMP_Text textComponent, int choiceKey)
+    {
+        if (textComponent == null)
+            return;
+
+        if (treeData == null || currentNode == null || currentNode.choices == null)
+        {
+            textComponent.text = "";
+            return;
+        }
+
+        VideoChoiceData choice = currentNode.choices.FirstOrDefault(c => c.key == choiceKey);
+
+        if (choice == null)
+        {
+            textComponent.text = "";
+            return;
+        }
+
+        string label = GetLabelForTarget(choice.target);
+
+        textComponent.text = label;
+    }
     private string BuildPathText()
     {
         if (treeData == null)
@@ -832,6 +884,9 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         if (!themeSelected)
             return "État actuel : Menu principal";
 
+        if (!string.IsNullOrWhiteSpace(currentNode.label))
+            return "État actuel : " + currentNode.id + " - " + currentNode.label;
+
         return "État actuel : " + currentNode.id;
     }
 
@@ -841,6 +896,12 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         sb.AppendLine("Vidéo en cours : " + currentVideoDisplayName);
 
+        if (currentNode != null && !string.IsNullOrWhiteSpace(currentNode.label))
+            sb.AppendLine("Label PC : " + currentNode.label);
+
+        if (currentNode != null && !string.IsNullOrWhiteSpace(currentNode.step))
+            sb.AppendLine("Étape : " + currentNode.step);
+
         if (isTransitioning)
             sb.AppendLine("État : transition...");
         else if (isIdleVideoPlaying)
@@ -849,6 +910,20 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
             sb.AppendLine("État : lecture");
 
         return sb.ToString().TrimEnd();
+    }
+
+    private string BuildStepText()
+    {
+        if (treeData == null)
+            return "Étape : JSON introuvable";
+
+        if (currentNode == null)
+            return "Étape : Aucun node";
+
+        if (!string.IsNullOrWhiteSpace(currentNode.step))
+            return "Étape : " + currentNode.step;
+
+        return "Étape : Non définie";
     }
 
     private string BuildChoicesText()
@@ -882,7 +957,8 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         {
             foreach (VideoChoiceData choice in currentNode.choices.OrderBy(c => c.key))
             {
-                sb.AppendLine($"{choice.key} -> {choice.label}");
+                string choiceLabel = GetLabelForTarget(choice.target);
+                sb.AppendLine($"{choice.key} -> {choiceLabel}");
             }
         }
 
@@ -891,5 +967,24 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         sb.AppendLine("C -> afficher/cacher phrase casque");
 
         return sb.ToString().TrimEnd();
+    }
+
+    private string GetLabelForTarget(string targetId)
+    {
+        if (string.IsNullOrWhiteSpace(targetId))
+            return "Target vide";
+
+        if (!nodeById.ContainsKey(targetId))
+            return "Target introuvable : " + targetId;
+
+        VideoNodeData targetNode = nodeById[targetId];
+
+        if (!string.IsNullOrWhiteSpace(targetNode.label))
+            return targetNode.label;
+
+        if (!string.IsNullOrWhiteSpace(targetNode.phrase))
+            return targetNode.phrase;
+
+        return targetNode.id;
     }
 }

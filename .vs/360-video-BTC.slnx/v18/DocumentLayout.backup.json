@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\2_WORK\\DXR\\PRJ\\5_Formation_BTC\\360-video-BTC\\",
+  "WorkspaceRootPath": "C:\\Users\\yanis\\OneDrive\\Bureau\\360 unity\\360 deg video\\360-video-BTC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\2_WORK\\DXR\\PRJ\\5_Formation_BTC\\360-video-BTC\\Assets\\scripts\\arbre tree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\scripts\\arbre tree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\yanis\\onedrive\\bureau\\360 unity\\360 deg video\\360-video-btc\\assets\\scripts\\arbre tree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\arbre tree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,23 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{93c5e7ad-af06-49e6-a756-b8f3eaca790d}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "arbre tree.cs",
-              "DocumentMoniker": "D:\\2_WORK\\DXR\\PRJ\\5_Formation_BTC\\360-video-BTC\\Assets\\scripts\\arbre tree.cs",
+              "DocumentMoniker": "C:\\Users\\yanis\\OneDrive\\Bureau\\360 unity\\360 deg video\\360-video-BTC\\Assets\\scripts\\arbre tree.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\arbre tree.cs",
-              "ToolTip": "D:\\2_WORK\\DXR\\PRJ\\5_Formation_BTC\\360-video-BTC\\Assets\\scripts\\arbre tree.cs",
+              "ToolTip": "C:\\Users\\yanis\\OneDrive\\Bureau\\360 unity\\360 deg video\\360-video-BTC\\Assets\\scripts\\arbre tree.cs",
               "RelativeToolTip": "Assets\\scripts\\arbre tree.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEMDAAAAAAAAAAA/wGADAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T15:36:18.019Z",
+              "WhenOpened": "2026-05-06T13:01:21.04Z",
               "EditorCaption": ""
             }
           ]

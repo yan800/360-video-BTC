@@ -19,21 +19,19 @@
     {
       "id": "menu",
       "video": "video de depart.mp4",
-      "phrase": "Veillez vous mettre en place",
+      "label": "",
+      "phrase": "Mettez-vous en place pour commencer l'entretien : Mehdi est sur le point d'entrer.",
       "choices": [
         {
           "key": 1,
-          "label": "Mehdi, content de te voir. Tu as pris le temps de préparer des notes, j'apprécie vraiment ça.",
           "target": "vid_23"
         },
         {
           "key": 2,
-          "label": "Bonjour Mehdi. On va commencer, j'ai pas beaucoup de temps.",
           "target": "vid_24"
         },
         {
           "key": 3,
-          "label": "Bonjour Mehdi. Assieds-toi, on va commencer.",
           "target": "vid_25"
         }
       ]
@@ -41,21 +39,19 @@
     {
       "id": "vid_23",
       "video": "VID_23.mp4",
-      "phrase": "Mehdi, content de te voir. Tu as pris le temps de préparer des notes, j'apprécie vraiment ça.",
+      "label": "mehdi souris franchement,les epaules detandu il ouvre son carnet.",
+      "phrase": "Vous devez accueillir Mehdi. Allez-y.",
       "choices": [
         {
           "key": 1,
-          "label": "",
           "target": "vid_26"
         },
         {
           "key": 2,
-          "label": "",
           "target": "vid_28"
         },
         {
           "key": 3,
-          "label": "",
           "target": "vid_30"
         }
       ]
@@ -63,21 +59,19 @@
     {
       "id": "vid_24",
       "video": "VID_24.mp4",
-      "phrase": "Bonjour Mehdi. On va commencer, j'ai pas beaucoup de temps.",
+      "label": "mehdi s'assoit calmement avec une expression sans chaleur atttadant le manager.",
+      "phrase": "Vous devez accueillir Mehdi. Allez-y.",
       "choices": [
         {
           "key": 1,
-          "label": "",
           "target": "vid_26"
         },
         {
           "key": 2,
-          "label": "",
           "target": "vid_28"
         },
         {
           "key": 3,
-          "label": "",
           "target": "vid_30"
         }
       ]
@@ -85,21 +79,19 @@
     {
       "id": "vid_25",
       "video": "VID_25.mp4",
-      "phrase": "Bonjour Mehdi. Assieds-toi, on va commencer.",
+      "label": "mehdi retre rapidement et croise les bras apres avoir ferme son carnet.",
+      "phrase": "Vous devez accueillir Mehdi. Allez-y.",
       "choices": [
         {
           "key": 1,
-          "label": "",
           "target": "vid_26"
         },
         {
           "key": 2,
-          "label": "",
           "target": "vid_28"
         },
         {
           "key": 3,
-          "label": "",
           "target": "vid_30"
         }
       ]
@@ -107,21 +99,19 @@
     {
       "id": "vid_26",
       "video": "VID_26.mp4",
-      "phrase": "",
+      "label": "Mehdi, content de te voir. Tu as pris le temps de préparer des notes, j'apprécie vraiment ça.",
+      "phrase": "Comment mettre Mehdi à l'aise avant de discuter de ses résultats ?",
       "choices": [
         {
           "key": 1,
-          "label": "",
           "target": "vid_27"
         },
         {
           "key": 2,
-          "label": "",
           "target": "vid_29"
         },
         {
           "key": 3,
-          "label": "",
           "target": "vid_31"
         }
       ]
@@ -129,21 +119,19 @@
     {
       "id": "vid_28",
       "video": "VID_28.mp4",
-      "phrase": "",
+      "label": "Bonjour Mehdi. Assieds-toi, on va commencer.",
+      "phrase": "Comment mettre Mehdi à l'aise avant de discuter de ses résultats ?",
       "choices": [
         {
           "key": 1,
-          "label": "",
           "target": "vid_27"
         },
         {
           "key": 2,
-          "label": "",
           "target": "vid_29"
         },
         {
           "key": 3,
-          "label": "",
           "target": "vid_31"
         }
       ]
@@ -151,21 +139,19 @@
     {
       "id": "vid_30",
       "video": "VID_30.mp4",
-      "phrase": "",
+      "label": "Bonjour Mehdi. On va commencer, j'ai pas beaucoup de temps.",
+      "phrase": "Comment mettre Mehdi à l'aise avant de discuter de ses résultats ?",
       "choices": [
         {
           "key": 1,
-          "label": "",
           "target": "vid_27"
         },
         {
           "key": 2,
-          "label": "",
           "target": "vid_29"
         },
         {
           "key": 3,
-          "label": "",
           "target": "vid_31"
         }
       ]
@@ -173,83 +159,886 @@
     {
       "id": "vid_27",
       "video": "VID_27.mp4",
-      "phrase": "",
-      "choices": []
+      "label": "Bien sûr, c'est fait pour ça. Tu as toute ma disponibilité.",
+      "phrase": "Mehdi a réalisé 118 % cette année. Comment aborder ses résultats ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_32"
+        },
+        {
+          "key": 2,
+          "target": "vid_35"
+        },
+        {
+          "key": 3,
+          "target": "vid_37"
+        }
+      ]
     },
     {
       "id": "vid_29",
       "video": "VID_29.mp4",
-      "phrase": "",
-      "choices": []
+      "label": "Comment tu vas ?",
+      "phrase": "Mehdi a réalisé 118 % cette année. Comment aborder ses résultats ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_32"
+        },
+        {
+          "key": 2,
+          "target": "vid_35"
+        },
+        {
+          "key": 3,
+          "target": "vid_37"
+        }
+      ]
     },
     {
       "id": "vid_31",
       "video": "VID_31.mp4",
+      "label": "On va passer en revue tes résultats, tes objectifs, et on verra pour la suite.",
+      "phrase": "Mehdi a réalisé 118 % cette année. Comment aborder ses résultats ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_32"
+        },
+        {
+          "key": 2,
+          "target": "vid_35"
+        },
+        {
+          "key": 3,
+          "target": "vid_37"
+        }
+      ]
+    },
+    {
+      "id": "vid_32",
+      "video": "VID_32.mp4",
+      "label": "Avant qu'on regarde les chiffres, j'aimerais t'entendre toi. Si tu devais décrire cette année avec tes propres mots, tu dirais quoi ?",
+      "phrase": "Le projet Delta a eu des resultas peu concluant. Comment aborder le sujet ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_33"
+        },
+        {
+          "key": 2,
+          "target": "vid_36"
+        },
+        {
+          "key": 3,
+          "target": "vid_39"
+        }
+      ]
+    },
+    {
+      "id": "vid_35",
+      "video": "VID_35.mp4",
+      "label": "Est-ce que tu es satisfait de ton année ?",
+      "phrase": "Le projet Delta a eu des resultas peu concluant. Comment aborder le sujet ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_33"
+        },
+        {
+          "key": 2,
+          "target": "vid_36"
+        },
+        {
+          "key": 3,
+          "target": "vid_39"
+        }
+      ]
+    },
+    {
+      "id": "vid_37",
+      "video": "VID_37.mp4",
+      "label": "Alors, tes chiffres sont là. 118%. Comment tu expliques ça ?",
+      "phrase": "Le projet Delta a eu des resultas peu concluant. Comment aborder le sujet ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_33"
+        },
+        {
+          "key": 2,
+          "target": "vid_36"
+        },
+        {
+          "key": 3,
+          "target": "vid_39"
+        }
+      ]
+    },
+    {
+      "id": "vid_33",
+      "video": "VID_33.mp4",
+      "label": "Et ce qui t'a le moins satisfait ?",
+      "phrase": "C'est rare de parler de ses erreurs. Excellent.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_34"
+        }
+      ]
+    },
+    {
+      "id": "vid_34",
+      "video": "VID_34.mp4",
+      "label": "C'est rare quelqu'un qui parle de ses apprentissages spontanément. Je note.",
+      "phrase": "Mehdi a surperformé avec 118 %, mais Delta est à 78 %. Sur quoi se focaliser ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_40"
+        },
+        {
+          "key": 2,
+          "target": "vid_42"
+        },
+        {
+          "key": 3,
+          "target": "vid_44"
+        }
+      ]
+    },
+    {
+      "id": "vid_36",
+      "video": "VID_36.mp4",
+      "label": "C'est bien. Des difficultés particulières ?",
+      "phrase": "Mehdi a surperformé avec 118 %, mais Delta est à 78 %. Sur quoi se focaliser ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_40"
+        },
+        {
+          "key": 2,
+          "target": "vid_42"
+        },
+        {
+          "key": 3,
+          "target": "vid_44"
+        }
+      ]
+    },
+    {
+      "id": "vid_39",
+      "video": "VID_39.mp4",
+      "label": "Et le projet Delta ?",
+      "phrase": "Mehdi a surperformé avec 118 %, mais Delta est à 78 %. Sur quoi se focaliser ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_40"
+        },
+        {
+          "key": 2,
+          "target": "vid_42"
+        },
+        {
+          "key": 3,
+          "target": "vid_44"
+        }
+      ]
+    },
+    {
+      "id": "vid_40",
+      "video": "VID_40.mp4",
+      "label": "118%, c'est remarquable. Mais au-delà du chiffre — quelle valeur concrète tu penses avoir créée pour l'équipe et pour l'entreprise cette année ?",
+      "phrase": "Insister sur sa réussite, sur son échec, ou ne rien ajouter ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_41"
+        },
+        {
+          "key": 2,
+          "target": "vid_43"
+        },
+        {
+          "key": 3,
+          "target": "vid_45"
+        }
+      ]
+    },
+    {
+      "id": "vid_42",
+      "video": "VID_42.mp4",
+      "label": "Tes résultats sont bons. 118% sur l'objectif principal. Quelques points à améliorer sur Delta.",
+      "phrase": "Insister sur sa réussite, sur son échec, ou ne rien ajouter ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_41"
+        },
+        {
+          "key": 2,
+          "target": "vid_43"
+        },
+        {
+          "key": 3,
+          "target": "vid_45"
+        }
+      ]
+    },
+    {
+      "id": "vid_44",
+      "video": "VID_44.mp4",
+      "label": "118%, c'est bien. Mais sur Delta, tu étais à 74%. Il faut qu'on comprenne pourquoi.",
+      "phrase": "Insister sur sa réussite, sur son échec, ou ne rien ajouter ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_41"
+        },
+        {
+          "key": 2,
+          "target": "vid_43"
+        },
+        {
+          "key": 3,
+          "target": "vid_45"
+        }
+      ]
+    },
+    {
+      "id": "vid_41",
+      "video": "VID_41.mp4",
+      "label": "Tu te rends compte que tu as changé la façon de travailler de 12 personnes ?",
+      "phrase": "Mehdi attend un feedback sur son travail. Donnez votre avis sur sa prestation jusqu'à maintenant.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_46"
+        },
+        {
+          "key": 2,
+          "target": "vid_48"
+        },
+        {
+          "key": 3,
+          "target": "vid_50"
+        }
+      ]
+    },
+    {
+      "id": "vid_43",
+      "video": "VID_43.mp4",
+      "label": "Tu as quelque chose à ajouter ?",
+      "phrase": "Mehdi attend un feedback sur son travail. Donnez votre avis sur sa prestation jusqu'à maintenant.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_46"
+        },
+        {
+          "key": 2,
+          "target": "vid_48"
+        },
+        {
+          "key": 3,
+          "target": "vid_50"
+        }
+      ]
+    },
+    {
+      "id": "vid_45",
+      "video": "VID_45.mp4",
+      "label": "Mais il y avait peut-être des choses à faire différemment de ton côté ?",
+      "phrase": "Mehdi attend un feedback sur son travail. Donnez votre avis sur sa prestation jusqu'à maintenant.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_46"
+        },
+        {
+          "key": 2,
+          "target": "vid_48"
+        },
+        {
+          "key": 3,
+          "target": "vid_50"
+        }
+      ]
+    },
+    {
+      "id": "vid_46",
+      "video": "VID_46.mp4",
+      "label": "Ce que j'observe chez toi : tu n'es pas seulement performant, tu rends les autres meilleurs. Le template de gestion de risques, le mentorat des juniors — tu as un impact multiplicateur. C'est rare.",
+      "phrase": "Creusez davantage ses forces et ses ambitions à venir, avec vos mots.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_47"
+        },
+        {
+          "key": 2,
+          "target": "vid_49"
+        },
+        {
+          "key": 3,
+          "target": "vid_51"
+        }
+      ]
+    },
+    {
+      "id": "vid_48",
+      "video": "VID_48.mp4",
+      "label": "Tes points forts : expertise technique, leadership. Axe de travail : la gestion de crise client.",
+      "phrase": "Creusez davantage ses forces et ses ambitions à venir, avec vos mots.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_47"
+        },
+        {
+          "key": 2,
+          "target": "vid_49"
+        },
+        {
+          "key": 3,
+          "target": "vid_51"
+        }
+      ]
+    },
+    {
+      "id": "vid_50",
+      "video": "VID_50.mp4",
+      "label": "Tu travailles bien, tu es fiable. Continue comme ça. Pour l'axe de développement, peut-être travailler un peu plus sur la communication.",
+      "phrase": "Creusez davantage ses forces et ses ambitions à venir, avec vos mots.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_47"
+        },
+        {
+          "key": 2,
+          "target": "vid_49"
+        },
+        {
+          "key": 3,
+          "target": "vid_51"
+        }
+      ]
+    },
+    {
+      "id": "vid_47",
+      "video": "VID_47.mp4",
+      "label": "Et si tu devais aller plus loin dans cette direction — où est-ce que tu voudrais être dans 3 ans ?",
+      "phrase": "Comment fidéliser Mehdi pour l'année prochaine : lui imposer la même cadence ou  fixer des objectifs plus ambitieux ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_52"
+        },
+        {
+          "key": 2,
+          "target": "vid_55"
+        },
+        {
+          "key": 3,
+          "target": "vid_57"
+        }
+      ]
+    },
+    {
+      "id": "vid_49",
+      "video": "VID_49.mp4",
+      "label": "Tu as quelque chose à ajouter sur tes propres forces ou limites ?",
+      "phrase": "Comment fidéliser Mehdi pour l'année prochaine : lui imposer la même cadence ou  fixer des objectifs plus ambitieux ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_52"
+        },
+        {
+          "key": 2,
+          "target": "vid_55"
+        },
+        {
+          "key": 3,
+          "target": "vid_57"
+        }
+      ]
+    },
+    {
+      "id": "vid_51",
+      "video": "VID_51.mp4",
+      "label": "Eh bien... la communication avec les clients, globalement.",
+      "phrase": "Comment fidéliser Mehdi pour l'année prochaine : lui imposer la même cadence ou  fixer des objectifs plus ambitieux ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_52"
+        },
+        {
+          "key": 2,
+          "target": "vid_55"
+        },
+        {
+          "key": 3,
+          "target": "vid_57"
+        }
+      ]
+    },
+    {
+      "id": "vid_52",
+      "video": "VID_52.mp4",
+      "label": "J'aimerais qu'on construise tes objectifs ensemble. Pas juste reconduire l'an dernier — je veux qu'on pense à ce qui va vraiment te challenger et te faire grandir.",
+      "phrase": "Écouter ses idées, proposer les vôtres, ou voir cela plus tard ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_53"
+        },
+        {
+          "key": 2,
+          "target": "vid_56"
+        },
+        {
+          "key": 3,
+          "target": "vid_58"
+        }
+      ]
+    },
+    {
+      "id": "vid_55",
+      "video": "VID_55.mp4",
+      "label": "On va fixer des objectifs ambitieux. Je t'envoie la proposition par mail cette semaine pour validation.",
+      "phrase": "Écouter ses idées, proposer les vôtres, ou voir cela plus tard ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_53"
+        },
+        {
+          "key": 2,
+          "target": "vid_56"
+        },
+        {
+          "key": 3,
+          "target": "vid_58"
+        }
+      ]
+    },
+    {
+      "id": "vid_57",
+      "video": "VID_57.mp4",
+      "label": "Pour l'année prochaine, je te propose les mêmes objectifs avec une hausse de 10%. Tu as les capacités pour ça.",
+      "phrase": "Écouter ses idées, proposer les vôtres, ou voir cela plus tard ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_53"
+        },
+        {
+          "key": 2,
+          "target": "vid_56"
+        },
+        {
+          "key": 3,
+          "target": "vid_58"
+        }
+      ]
+    },
+    {
+      "id": "vid_53",
+      "video": "VID_53.mp4",
+      "label": "Je t'écoute.",
+      "phrase": "C'est là où vous vouliez en venir. Bravo.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_54"
+        }
+      ]
+    },
+    {
+      "id": "vid_54",
+      "video": "VID_54.mp4",
+      "label": "C'est exactement là où je voulais en venir. Je te propose précisément ça : comité de pilotage dès Q1 et mandat de référent méthodes. Qu'est-ce que tu en dis ?",
+      "phrase": "Lui proposer un rôle de leadership, une formation pour le préparer, ou déléguer la décision aux RH ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_60"
+        },
+        {
+          "key": 2,
+          "target": "vid_62"
+        },
+        {
+          "key": 3,
+          "target": "vid_64"
+        }
+      ]
+    },
+    {
+      "id": "vid_56",
+      "video": "VID_56.mp4",
+      "label": "Tu as des souhaits particuliers pour l'année prochaine ?",
+      "phrase": "Lui proposer un rôle de leadership, une formation pour le préparer, ou déléguer la décision aux RH ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_60"
+        },
+        {
+          "key": 2,
+          "target": "vid_62"
+        },
+        {
+          "key": 3,
+          "target": "vid_64"
+        }
+      ]
+    },
+    {
+      "id": "vid_58",
+      "video": "VID_58.mp4",
+      "label": "On verra ça plus tard, une fois que tu auras consolidé ce niveau.",
+      "phrase": "Lui proposer un rôle de leadership, une formation pour le préparer, ou déléguer la décision aux RH ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_60"
+        },
+        {
+          "key": 2,
+          "target": "vid_62"
+        },
+        {
+          "key": 3,
+          "target": "vid_64"
+        }
+      ]
+    },
+    {
+      "id": "vid_60",
+      "video": "VID_60.mp4",
+      "label": "J'ai pensé à toi pour le programme Leadership Exécutif de l'école de management — 6 mois, format hybride. Et je voudrais te mandater pour animer notre communauté de pratique interne. C'est exactement dans ta direction.",
+      "phrase": "Être enthousiaste à cette idée, ou simplement dire que c'est pour le tenir au courant ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_61"
+        },
+        {
+          "key": 2,
+          "target": "vid_63"
+        },
+        {
+          "key": 3,
+          "target": "vid_65"
+        }
+      ]
+    },
+    {
+      "id": "vid_62",
+      "video": "VID_62.mp4",
+      "label": "On va voir avec les RH ce qui est disponible dans le catalogue. Tu me diras ce qui t'intéresse.",
+      "phrase": "Être enthousiaste à cette idée, ou simplement dire que c'est pour le tenir au courant ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_61"
+        },
+        {
+          "key": 2,
+          "target": "vid_63"
+        },
+        {
+          "key": 3,
+          "target": "vid_65"
+        }
+      ]
+    },
+    {
+      "id": "vid_64",
+      "video": "VID_64.mp4",
+      "label": "Il y a une formation gestion de projet avancée en mars. Je pense que ça te ferait du bien de rafraîchir les bases.",
+      "phrase": "Être enthousiaste à cette idée, ou simplement dire que c'est pour le tenir au courant ?",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_61"
+        },
+        {
+          "key": 2,
+          "target": "vid_63"
+        },
+        {
+          "key": 3,
+          "target": "vid_65"
+        }
+      ]
+    },
+    {
+      "id": "vid_61",
+      "video": "VID_61.mp4",
+      "label": "Je le savais. Voilà pourquoi je t'en parle.",
+      "phrase": "Clore l'entretien : cette conclusion va déterminer l'état d'esprit de Mehdi.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_66"
+        },
+        {
+          "key": 2,
+          "target": "vid_68"
+        },
+        {
+          "key": 3,
+          "target": "vid_71"
+        }
+      ]
+    },
+    {
+      "id": "vid_63",
+      "video": "VID_63.mp4",
+      "label": "Tu as des formations en tête ?",
+      "phrase": "Clore l'entretien : cette conclusion va déterminer l'état d'esprit de Mehdi.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_66"
+        },
+        {
+          "key": 2,
+          "target": "vid_68"
+        },
+        {
+          "key": 3,
+          "target": "vid_71"
+        }
+      ]
+    },
+    {
+      "id": "vid_65",
+      "video": "VID_65.mp4",
+      "label": "Non, non — c'est juste pour... te tenir à jour.",
+      "phrase": "Clore l'entretien : cette conclusion va déterminer l'état d'esprit de Mehdi.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_66"
+        },
+        {
+          "key": 2,
+          "target": "vid_68"
+        },
+        {
+          "key": 3,
+          "target": "vid_71"
+        }
+      ]
+    },
+    {
+      "id": "vid_66",
+      "video": "VID_66.mp4",
+      "label": "Mehdi, travailler avec toi c'est un vrai plaisir. Mon engagement : te donner la visibilité stratégique dont tu as besoin et te mettre sur le comité de pilotage dès janvier. Le tien ?",
+      "phrase": "Conclure et dire au revoir.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_67"
+        },
+        {
+          "key": 2,
+          "target": "vid_69"
+        },
+        {
+          "key": 3,
+          "target": "vid_72"
+        }
+      ]
+    },
+    {
+      "id": "vid_68",
+      "video": "VID_68.mp4",
+      "label": "C'est bon pour moi. Tu as des questions avant qu'on se quitte ?",
+      "phrase": "Conclure et dire au revoir.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_67"
+        },
+        {
+          "key": 2,
+          "target": "vid_69"
+        },
+        {
+          "key": 3,
+          "target": "vid_72"
+        }
+      ]
+    },
+    {
+      "id": "vid_71",
+      "video": "VID_71.mp4",
+      "label": "Bien, on a fait le tour. On se refera un point dans 6 mois. Bon courage pour la suite.",
+      "phrase": "Conclure et dire au revoir.",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_67"
+        },
+        {
+          "key": 2,
+          "target": "vid_69"
+        },
+        {
+          "key": 3,
+          "target": "vid_72"
+        }
+      ]
+    },
+
+
+
+
+
+    {
+      "id": "vid_67",
+      "video": "VID_67.mp4",
+      "label": "C'est exactement ça. On a construit quelque chose de concret aujourd'hui.",
+      "phrase": "mehdi part",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_74"
+        },
+        {
+          "key": 2,
+          "target": "vid_73"
+        },
+        {
+          "key": 3,
+          "target": "vid_fin"
+        }
+      ]
+    },
+    {
+      "id": "vid_69",
+      "video": "VID_69.mp4",
+      "label": "Parfait. Bonne continuation.",
+      "phrase": "mehdi part",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_74"
+        },
+        {
+          "key": 2,
+          "target": "vid_73"
+        },
+        {
+          "key": 3,
+          "target": "vid_fin"
+        }
+      ]
+    },
+    {
+      "id": "vid_72",
+      "video": "VID_72.mp4",
+      "label": "Des questions ?",
+      "phrase": "mehdi part",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_fin"
+        },
+        {
+          "key": 2,
+          "target": "vid_fin"
+        },
+        {
+          "key": 3,
+          "target": "vid_fin"
+        }
+      ]
+    },
+
+
+
+
+
+
+        {
+      "id": "vid_74",
+      "video": "VID_74.mp4",
+      "label": "C'est exactement ça. On a construit quelque chose de concret aujourd'hui.",
+      "phrase": "mehdi part",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_fin"
+        },
+        {
+          "key": 2,
+          "target": "vid_fin"
+        },
+        {
+          "key": 3,
+          "target": "vid_fin"
+        }
+      ]
+    },
+    {
+      "id": "vid_72",
+      "video": "VID_72.mp4",
+      "label": "Parfait. Bonne continuation.",
+      "phrase": "mehdi part",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_fin"
+        },
+        {
+          "key": 2,
+          "target": "vid_fin"
+        },
+        {
+          "key": 3,
+          "target": "vid_fin"
+        }
+      ]
+    },
+    {
+      "id": "vid_73",
+      "video": "VID_37.mp4",
+      "label": "Des questions ?",
+      "phrase": "mehdi part",
+      "choices": [
+        {
+          "key": 1,
+          "target": "vid_fin"
+        },
+        {
+          "key": 2,
+          "target": "vid_fin"
+        },
+        {
+          "key": 3,
+          "target": "vid_fin"
+        }
+      ]
+    },
+
+
+
+        {
+      "id": "vid_fin",
+      "video": "video de depart.mp4",
+      "label": "fin",
       "phrase": "",
-      "choices": []
-    },
-    {
-      "id": "foret_intro",
-      "video": "1.mp4",
-      "phrase": "Vous entrez dans la forêt.",
-      "choices": [
-        {
-          "key": 1,
-          "label": "Thème urbain",
-          "target": "urbain_intro"
-        },
-        {
-          "key": 2,
-          "label": "Aller vers fin",
-          "target": "fin"
-        }
-      ]
-    },
-    {
-      "id": "urbain_intro",
-      "video": "video 360 deg.mov",
-      "phrase": "La ville apparaît autour de vous.",
-      "choices": [
-        {
-          "key": 1,
-          "label": "Aller vers fin",
-          "target": "fin"
-        }
-      ]
-    },
-    {
-      "id": "espace_intro",
-      "video": "2.mp4",
-      "phrase": "L'espace s'ouvre devant vous.",
-      "choices": [
-        {
-          "key": 1,
-          "label": "Aller vers fin",
-          "target": "fin"
-        },
-        {
-          "key": 2,
-          "label": "rostom",
-          "target": "rostom"
-        }
-      ]
-    },
-    {
-      "id": "rostom",
-      "video": "VID_20260414_114547_00_024.mp4",
-      "phrase": "Séquence spéciale en cours.",
-      "choices": [
-        {
-          "key": 2,
-          "label": "Aller vers fin",
-          "target": "fin"
-        }
-      ]
-    },
-    {
-      "id": "fin",
-      "video": "AAA video 360 depart.mp4",
-      "phrase": "Fin du parcours.",
       "choices": []
     }
   ]
