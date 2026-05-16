@@ -44,17 +44,54 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
     [SerializeField] private float fadeInFromBlackDuration = 2f;
     [SerializeField] private float fullBlackHold = 0.1f;
 
+    [Header("Transition légère vers les vidéos idle")]
+    [SerializeField] private float idleFadeOutToBlackDuration = 0.35f;
+    [SerializeField] private float idleFadeInFromBlackDuration = 0.35f;
+    [SerializeField] private float idleFullBlackHold = 0.05f;
+
+    [Header("Départ aléatoire des vidéos idle")]
+    [SerializeField] private bool randomizeIdleStartTime = true;
+    [SerializeField] private float idleRandomStartMinSeconds = 0f;
+    [SerializeField] private float idleRandomEndSafetySeconds = 1f;
+
+    [Header("Vidéos qui restent en pause à la dernière image")]
+    [SerializeField]
+    private List<string> pauseAtEndNodeIds = new List<string>
+    {
+        "vid_72",
+        "vid_73",
+        "vid_74"
+    };
+
+    [SerializeField]
+    private List<string> pauseAtEndVideoFileNames = new List<string>
+    {
+        "VID_72.mp4",
+        "VID_73.mp4",
+        "VID_74.mp4"
+    };
+
+    [SerializeField] private float pauseAtEndOffsetSeconds = 0.05f;
+
     [Header("Menu UI")]
     [SerializeField] private GameObject menuCanvas;
 
     [Header("UI casque - phrase vidéo")]
-    [SerializeField] private Transform centerEyeAnchor;
+    [SerializeField] private Transform sphereAnchor;
+    [SerializeField] private string sphereObjectName = "theSphere";
     [SerializeField] private GameObject helmetPhraseUIRoot;
     [SerializeField] private TMP_Text helmetPhraseText;
     [SerializeField] private bool showHelmetPhrase = true;
     [SerializeField] private Key toggleHelmetPhraseKey = Key.C;
     [SerializeField] private string defaultHelmetPhrase = "";
-    [SerializeField] private Vector3 helmetPhraseLocalPosition = new Vector3(0f, -0.25f, 2f);
+
+    [Tooltip("Si true, le texte garde sa position actuelle dans la scène quand il est attaché à la sphère.")]
+    [SerializeField] private bool keepHelmetPhraseWorldPosition = true;
+
+    [Tooltip("Utilisé seulement si Keep Helmet Phrase World Position est désactivé.")]
+    [SerializeField] private Vector3 helmetPhraseLocalPosition = new Vector3(-1.5f, -0.25f, 2f);
+
+    [Tooltip("Utilisé seulement si Keep Helmet Phrase World Position est désactivé.")]
     [SerializeField] private Vector3 helmetPhraseLocalEuler = Vector3.zero;
 
     [Header("PC Operator UI - TextMeshPro")]
@@ -84,6 +121,8 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
     private bool isStartupVideoPlaying = false;
     private bool isIdleVideoPlaying = false;
+    private bool isPausedAtEnd = false;
+
     private int lastVideoLaunchKey = -1;
 
     private string currentVideoDisplayName = "Aucune";
@@ -336,15 +375,34 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
             return;
         }
 
-        if (centerEyeAnchor != null)
+        if (sphereAnchor == null)
         {
-            helmetPhraseUIRoot.transform.SetParent(centerEyeAnchor, false);
-            helmetPhraseUIRoot.transform.localPosition = helmetPhraseLocalPosition;
-            helmetPhraseUIRoot.transform.localRotation = Quaternion.Euler(helmetPhraseLocalEuler);
+            GameObject sphereObject = GameObject.Find(sphereObjectName);
+
+            if (sphereObject != null)
+                sphereAnchor = sphereObject.transform;
+        }
+
+        if (sphereAnchor != null)
+        {
+            if (keepHelmetPhraseWorldPosition)
+            {
+                // Garde la position actuelle du texte dans la scène,
+                // puis le rend enfant de la sphère.
+                // Résultat : il ne bouge pas au départ, mais il suivra la sphère ensuite.
+                helmetPhraseUIRoot.transform.SetParent(sphereAnchor, true);
+            }
+            else
+            {
+                // Place le texte avec une position locale précise par rapport à la sphère.
+                helmetPhraseUIRoot.transform.SetParent(sphereAnchor, false);
+                helmetPhraseUIRoot.transform.localPosition = helmetPhraseLocalPosition;
+                helmetPhraseUIRoot.transform.localRotation = Quaternion.Euler(helmetPhraseLocalEuler);
+            }
         }
         else
         {
-            Debug.LogWarning("CenterEyeAnchor non assigné. La phrase casque ne suivra pas la caméra.");
+            Debug.LogWarning("Sphere Anchor non assigné et GameObject 'theSphere' introuvable. La phrase casque ne suivra pas la sphère.");
         }
 
         helmetPhraseUIRoot.SetActive(showHelmetPhrase);
@@ -511,11 +569,12 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         videoPlayer.source = VideoSource.Url;
         videoPlayer.url = startupPath;
 
-        // La vidéo de départ est en boucle.
+        // La vidéo de départ est en boucle et ne lance jamais d'idle.
         videoPlayer.isLooping = true;
 
         isStartupVideoPlaying = true;
         isIdleVideoPlaying = false;
+        isPausedAtEnd = false;
         lastVideoLaunchKey = -1;
 
         SetupVideoAudio();
@@ -611,6 +670,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         }
 
         isTransitioning = true;
+        isPausedAtEnd = false;
         RefreshOperatorUI();
 
         yield return StartCoroutine(FadeAll(0f, 1f, fadeOutToBlackDuration));
@@ -630,6 +690,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         isStartupVideoPlaying = false;
         isIdleVideoPlaying = false;
+        isPausedAtEnd = false;
         lastVideoLaunchKey = launchKey;
 
         SetupVideoAudio();
@@ -670,6 +731,12 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         if (isIdleVideoPlaying)
             return;
 
+        if (IsCurrentVideoPauseAtEnd())
+        {
+            StartCoroutine(PauseCurrentVideoAtEndRoutine());
+            return;
+        }
+
         if (lastVideoLaunchKey <= 0)
         {
             Debug.LogWarning("Vidéo terminée, mais aucune touche de lancement n’est connue.");
@@ -677,6 +744,71 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         }
 
         StartCoroutine(PlayIdleVideoRoutine(lastVideoLaunchKey));
+    }
+
+    private bool IsCurrentVideoPauseAtEnd()
+    {
+        if (currentNode == null)
+            return false;
+
+        if (pauseAtEndNodeIds != null)
+        {
+            foreach (string nodeId in pauseAtEndNodeIds)
+            {
+                if (string.IsNullOrWhiteSpace(nodeId))
+                    continue;
+
+                if (string.Equals(currentNode.id, nodeId, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+
+        if (pauseAtEndVideoFileNames != null)
+        {
+            foreach (string videoName in pauseAtEndVideoFileNames)
+            {
+                if (string.IsNullOrWhiteSpace(videoName))
+                    continue;
+
+                if (string.Equals(currentNode.video, videoName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+
+                if (string.Equals(Path.GetFileName(currentNode.video), Path.GetFileName(videoName), StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    private IEnumerator PauseCurrentVideoAtEndRoutine()
+    {
+        isTransitioning = true;
+        isIdleVideoPlaying = false;
+        isPausedAtEnd = true;
+
+        RefreshOperatorUI();
+
+        yield return null;
+
+        if (videoPlayer != null)
+        {
+            videoPlayer.isLooping = false;
+
+            if (videoPlayer.canSetTime && videoPlayer.length > pauseAtEndOffsetSeconds)
+            {
+                videoPlayer.time = Mathf.Max(0f, (float)videoPlayer.length - pauseAtEndOffsetSeconds);
+            }
+
+            videoPlayer.Pause();
+        }
+
+        if (logBranching && currentNode != null)
+            Debug.Log($"Vidéo de fin terminée : {currentNode.id} | pause sur dernière image | vidéo : {currentVideoDisplayName}");
+
+        isTransitioning = false;
+        RefreshOperatorUI();
+        RefreshHelmetPhrase();
     }
 
     private IEnumerator PlayIdleVideoRoutine(int key)
@@ -697,7 +829,14 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
         }
 
         isTransitioning = true;
+        isPausedAtEnd = false;
         RefreshOperatorUI();
+
+        // Transition légère entre la vidéo terminée et la vidéo idle.
+        yield return StartCoroutine(FadeAll(0f, 1f, idleFadeOutToBlackDuration));
+
+        if (idleFullBlackHold > 0f)
+            yield return new WaitForSeconds(idleFullBlackHold);
 
         videoPlayer.Stop();
 
@@ -711,6 +850,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         isStartupVideoPlaying = false;
         isIdleVideoPlaying = true;
+        isPausedAtEnd = false;
 
         SetupVideoAudio();
 
@@ -721,17 +861,52 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         SetupVideoAudio();
 
+        double randomIdleStartTime = GetRandomIdleStartTime();
+
+        if (randomizeIdleStartTime && randomIdleStartTime > 0.0 && videoPlayer.canSetTime)
+        {
+            videoPlayer.time = randomIdleStartTime;
+        }
+
         videoPlayer.Play();
 
         currentVideoDisplayName = Path.GetFileName(idlePath);
 
         if (logBranching)
-            Debug.Log($"Lecture idle : touche {key} | vidéo : {currentVideoDisplayName}");
+            Debug.Log($"Lecture idle : touche {key} | vidéo : {currentVideoDisplayName} | départ à {randomIdleStartTime:F2}s");
 
         RefreshOperatorUI();
         RefreshHelmetPhrase();
 
+        yield return StartCoroutine(FadeAll(1f, 0f, idleFadeInFromBlackDuration));
+
         isTransitioning = false;
+        RefreshOperatorUI();
+    }
+
+    private double GetRandomIdleStartTime()
+    {
+        if (!randomizeIdleStartTime)
+            return 0.0;
+
+        if (videoPlayer == null)
+            return 0.0;
+
+        if (!videoPlayer.canSetTime)
+            return 0.0;
+
+        double videoLength = videoPlayer.length;
+
+        if (double.IsNaN(videoLength) || double.IsInfinity(videoLength) || videoLength <= 0.0)
+            return 0.0;
+
+        float minTime = Mathf.Max(0f, idleRandomStartMinSeconds);
+        float maxTime = Mathf.Max(minTime, (float)videoLength - Mathf.Max(0f, idleRandomEndSafetySeconds));
+
+        if (maxTime <= minTime)
+            return 0.0;
+
+        return UnityEngine.Random.Range(minTime, maxTime);
     }
 
     public void ReturnToMenu()
@@ -745,6 +920,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
             yield break;
 
         isTransitioning = true;
+        isPausedAtEnd = false;
         RefreshOperatorUI();
 
         yield return StartCoroutine(FadeAll(0f, 1f, fadeOutToBlackDuration));
@@ -760,6 +936,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         isStartupVideoPlaying = false;
         isIdleVideoPlaying = false;
+        isPausedAtEnd = false;
         lastVideoLaunchKey = -1;
 
         if (menuCanvas != null)
@@ -785,6 +962,17 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         if (vrScreenFade != null)
             vrScreenFade.SetExplicitFade(startAlpha);
+
+        if (duration <= 0f)
+        {
+            if (fadeCanvasGroup != null)
+                fadeCanvasGroup.alpha = endAlpha;
+
+            if (vrScreenFade != null)
+                vrScreenFade.SetExplicitFade(endAlpha);
+
+            yield break;
+        }
 
         while (elapsed < duration)
         {
@@ -870,6 +1058,7 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         textComponent.text = label;
     }
+
     private string BuildPathText()
     {
         if (treeData == null)
@@ -877,6 +1066,9 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         if (currentNode == null)
             return "État actuel : Aucun node";
+
+        if (isPausedAtEnd)
+            return "État actuel : vidéo de fin en pause";
 
         if (isIdleVideoPlaying)
             return "État actuel : Idle touche " + lastVideoLaunchKey;
@@ -904,6 +1096,8 @@ public class VRVideoJsonPlaylistController : MonoBehaviour
 
         if (isTransitioning)
             sb.AppendLine("État : transition...");
+        else if (isPausedAtEnd)
+            sb.AppendLine("État : pause dernière image");
         else if (isIdleVideoPlaying)
             sb.AppendLine("État : idle");
         else
